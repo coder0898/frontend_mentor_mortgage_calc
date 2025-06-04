@@ -11,7 +11,7 @@
       <div class="calculator-content">
         <div class="head">
           <h2>Mortgage Calculator</h2>
-          <button>Clear All</button>
+          <button id="clearAll">Clear All</button>
         </div>
         <form id="formSubmit">
           <div class="form-group">
@@ -32,6 +32,17 @@
               <div class="input-group">
                 <input type="number" id="loanRate" step="any" />
               </div>
+            </div>
+          </div>
+          <div class="select-group">
+            <h3>Mortgage Type</h3>
+            <div class="checkbox-group">
+              <input type="checkbox" id="repayRadio" />
+              <label for="repayRadio">Repayment</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="interestRadio" />
+              <label for="interestRadio">Interest Only</label>
             </div>
           </div>
           <button type="submit">
