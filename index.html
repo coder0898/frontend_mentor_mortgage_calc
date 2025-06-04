@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div class="calculator-container">
+      <div class="calculator-content">
+        <div class="head">
+          <h2>Mortgage Calculator</h2>
+          <button>Clear All</button>
+        </div>
+        <form id="formSubmit">
+          <div class="form-group">
+            <label for="loanAmount">Mortgage Amount</label>
+            <div class="input-group">
+              <input type="number" id="loanAmount" />
+            </div>
+          </div>
+          <div class="block-box">
+            <div class="form-group">
+              <label for="loanTerm">Mortgage Term</label>
+              <div class="input-group">
+                <input type="number" id="loanTerm" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="loanRate">Interest Rate</label>
+              <div class="input-group">
+                <input type="number" id="loanRate" step="any" />
+              </div>
+            </div>
+          </div>
+          <button type="submit">
+            <img src="./images/icon-calculator.svg" alt="404" />Calculate
+            Repayments
+          </button>
+        </form>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
