@@ -5,18 +5,26 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <div class="calculator-container">
       <div class="calculator-content">
         <div class="head">
           <h2>Mortgage Calculator</h2>
-          <button id="clearAll">Clear All</button>
+          <button id="clearAll"><span>Clear All</span></button>
         </div>
         <form id="formSubmit">
           <div class="form-group">
             <label for="loanAmount">Mortgage Amount</label>
             <div class="input-group">
+              <span><i class="fa-solid fa-indian-rupee-sign"></i></span>
               <input type="number" id="loanAmount" />
             </div>
           </div>
@@ -25,12 +33,14 @@
               <label for="loanTerm">Mortgage Term</label>
               <div class="input-group">
                 <input type="number" id="loanTerm" />
+                <span>Years</span>
               </div>
             </div>
             <div class="form-group">
               <label for="loanRate">Interest Rate</label>
               <div class="input-group">
                 <input type="number" id="loanRate" step="any" />
+                <span><i class="fa-solid fa-percent"></i></span>
               </div>
             </div>
           </div>
@@ -45,7 +55,7 @@
               <label for="interestRadio">Interest Only</label>
             </div>
           </div>
-          <button type="submit">
+          <button class="submit-btn" type="submit">
             <img src="./images/icon-calculator.svg" alt="404" />Calculate
             Repayments
           </button>
