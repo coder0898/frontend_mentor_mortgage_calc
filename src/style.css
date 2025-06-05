@@ -6,7 +6,6 @@
   box-sizing: border-box;
 }
 
-/* Use consistent and reusable color variables */
 :root {
   --heading-color: hsl(202, 55%, 16%);
   --secondary-color: hsl(200, 24%, 40%);
@@ -29,6 +28,11 @@ body {
   background: #fff;
   border-radius: 1rem;
   box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  max-width: 900px;
 }
 
 .calculator-content {
@@ -90,7 +94,6 @@ h2 {
   text-transform: lowercase;
 }
 
-/* Removed duplicated span nth-child styles — handled via 'overflow: hidden' on parent */
 
 .input-group input {
   width: 100%;
@@ -192,4 +195,86 @@ h2 {
 
 .submit-btn:hover {
   background-color: rgba(215, 218, 47, 0.4);
+}
+
+/* result */
+.result-box{
+  background-color: var(--heading-color);
+  border-bottom-right-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 5rem;
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.empty-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.empty-box h3{
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color:#fff ; 
+}
+
+.empty-box p{
+  color: #fff;
+}
+
+.calc-result{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.calc-result h3{
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color:#fff ; 
+}
+
+.calc-result p{
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.result-content{
+  background-color: var(--secondary-color);
+  padding: 10px;
+  border-radius: 1rem;
+  border-top: 4px solid var(--lime-color);
+}
+
+.monthly-payment{
+  border-bottom: 1px solid #fff;
+}
+
+.monthly-payment p ,.yearly-payment p{ 
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.monthly-payment h2, .yearly-payment h2{
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: var(--lime-color);
+}
+
+@media screen and (max-width:786px) {
+  .calculator-container{
+    flex-wrap: wrap;
+  }
+  .block-box{
+    flex-wrap: wrap;
+  }
+  .result-box{
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+  }
 }

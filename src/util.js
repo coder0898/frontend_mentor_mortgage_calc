@@ -13,7 +13,13 @@ const amountError = document.getElementById("amountErorr");
 const termError = document.getElementById("termError");
 const rateError = document.getElementById("rateError");
 
-export function ResetForm() {
+export function ResetForm(
+  monthlyAmount,
+  monthlyInterest,
+  totalAmount,
+  totalInterest,
+  resultBox
+) {
   loanAmount.value = "";
   loanTerm.value = "";
   loanRate.value = "";
@@ -37,6 +43,15 @@ export function ResetForm() {
     (totalAmount = 0),
     (monthlyInterest = 0),
     (totalInterest = 0);
+
+  resultBox.innerHTML = `<div class="empty-box">
+          <img src="./images/illustration-empty.svg" alt="404" />
+          <h3>Results shown here</h3>
+          <p>
+            Complete the form and click “calculate repayments” to see what your
+            monthly repayments would be.
+          </p>
+        </div> `;
 }
 
 // validating input
@@ -65,6 +80,7 @@ export function ValidateInput(amount, rate, months) {
     amountSpan.style.backgroundColor = "var(--red-color)";
     amountSpan.style.color = "#fff";
     isValid = false;
+    console.log(!amount || isNaN(amount) || amount <= 0);
   }
 
   // Validate Interest Rate
@@ -75,6 +91,7 @@ export function ValidateInput(amount, rate, months) {
     rateSpan.style.backgroundColor = "var(--red-color)";
     rateSpan.style.color = "#fff";
     isValid = false;
+    console.log(!rate || isNaN(rate) || rate < 0);
   }
 
   // Validate Loan Term
@@ -85,6 +102,7 @@ export function ValidateInput(amount, rate, months) {
     termSpan.style.backgroundColor = "var(--red-color)";
     termSpan.style.color = "#fff";
     isValid = false;
+    console.log(!months || isNaN(months) || months <= 0);
   }
 
   return isValid;

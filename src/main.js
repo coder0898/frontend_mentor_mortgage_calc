@@ -15,43 +15,85 @@ const clearAll = document.getElementById("clearAll");
 
 const formSubmit = document.getElementById("formSubmit");
 
+const resultBox = document.querySelector(".result-box");
+
 let monthlyAmount = 0,
   totalAmount = 0;
 let monthlyInterest = 0,
   totalInterest = 0;
 
 // function to calculate monthly payement and yearly
-function CalculatePayment() {
-  monthlyAmount +=
-    (principalAmount * interestRate * Math.pow(1 + interestRate, termCount)) /
-    (Math.pow(1 + interestRate, termCount) - 1);
-  totalAmount += monthlyAmount * termCount;
+function CalculatePayment(principal, rate, months) {
+  monthlyAmount =
+    (principal * rate * Math.pow(1 + rate, months)) /
+    (Math.pow(1 + rate, months) - 1);
+  totalAmount = monthlyAmount * months;
 }
 
 // function to calculate monthly interest and yearly
-function CalculateInterest() {
-  totalInterest += totalAmount - principalAmount;
-  monthlyInterest += totalInterest / termCount;
+function CalculateInterest(principal, months) {
+  totalInterest = totalAmount - principal;
+  monthlyInterest = totalInterest / months;
 }
 
 function CalculateRepayment() {
-  let principalAmount = loanAmount.value;
-  let termCount = loanTerm.value * 12; //term will be in year, conver to months.
-  let interestRate = loanRate.value / 12 / 100; //sice rate provided by user is yearly basis, conver it to months.
+  const principalAmount = parseFloat(loanAmount.value);
+  const interestRate = parseFloat(loanRate.value) / 12 / 100;
+  const termCount = parseInt(loanTerm.value) * 12;
 
   if (!ValidateInput(principalAmount, interestRate, termCount)) return;
 
+  // Reset values to avoid accumulation on multiple submits
+  monthlyAmount = 0;
+  totalAmount = 0;
+  monthlyInterest = 0;
+  totalInterest = 0;
+
+  resultBox.innerHTML = "";
   if (repayRadio.checked) {
-    CalculatePayment();
-    console.log(`your monthly repayment is Rs. ${monthlyAmount}`);
-    console.log(`your total repayment is Rs. ${totalAmount}`);
+    CalculatePayment(principalAmount, interestRate, termCount);
+    resultBox.innerHTML = `
+      <div class="calc-result">
+        <h3>Your results</h3>
+        <p>Your results are shown below based on the information you provided.</p>
+        <div class="result-content">
+          <div class="monthly-payment">
+            <p>Your monthly repayments</p>
+            <h2><span><i class="fa-solid fa-indian-rupee-sign"></i></span>${monthlyAmount.toFixed(
+              2
+            )}</h2>
+          </div>
+          <div class="yearly-payment">
+            <p>Total you'll repay over the term</p>
+            <h2><span><i class="fa-solid fa-indian-rupee-sign"></i></span>${totalAmount.toFixed(
+              2
+            )}</h2>
+          </div>
+        </div>
+      </div>`;
   } else if (interestRadio.checked) {
-    CalculatePayment();
-    CalculateInterest();
-    console.log(`your total interest is Rs. ${totalInterest}`);
-    console.log(`your monthly interest is Rs. ${monthlyInterest}`);
+    CalculatePayment(principalAmount, interestRate, termCount);
+    CalculateInterest(principalAmount, termCount);
+    resultBox.innerHTML = `
+      <div class="calc-result">
+        <h3>Your results</h3>
+        <p>Your results are shown below based on the information you provided.</p>
+        <div class="result-content">
+          <div class="monthly-payment">
+            <p>Your monthly interest</p>
+            <h2><span><i class="fa-solid fa-indian-rupee-sign"></i></span> ${monthlyInterest.toFixed(
+              2
+            )}</h2>
+          </div>
+          <div class="yearly-payment">
+            <p>Total interest you'll repay over the term</p>
+            <h2><span><i class="fa-solid fa-indian-rupee-sign"></i></span> ${totalInterest.toFixed(
+              2
+            )}</h2>
+          </div>
+        </div>
+      </div>`;
   }
-  ResetForm();
 }
 
 formSubmit.addEventListener("submit", (e) => {
@@ -60,5 +102,21 @@ formSubmit.addEventListener("submit", (e) => {
 });
 
 clearAll.addEventListener("click", () => {
-  ResetForm();
+  ResetForm(
+    monthlyAmount,
+    monthlyInterest,
+    totalAmount,
+    totalInterest,
+    resultBox
+  );
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  ResetForm(
+    monthlyAmount,
+    monthlyInterest,
+    totalAmount,
+    totalInterest,
+    resultBox
+  );
 });
