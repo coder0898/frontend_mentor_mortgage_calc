@@ -1,38 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
-*{
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root{
+/* Use consistent and reusable color variables */
+:root {
   --heading-color: hsl(202, 55%, 16%);
   --secondary-color: hsl(200, 24%, 40%);
   --span-background: hsl(202, 86%, 94%);
   --lime-color: hsl(61, 70%, 52%);
+  --background-gradient: linear-gradient(180deg, hsl(202, 86%, 94%) 100%, hsl(203, 41%, 72%) 0%);
 }
 
-body{
-  font-family: "Plus Jakarta Sans", sans-serif;
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(180deg,hsl(202, 86%, 94%) 100%,hsl(203, 41%, 72%) 0%);
+  background: var(--background-gradient);
 }
 
-.calculator-container{
-  background-color: #FFFFFF;
+.calculator-container {
+  background: #fff;
   border-radius: 1rem;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
 }
 
-.calculator-content{
+.calculator-content {
   padding: 20px;
   margin-bottom: 10px;
 }
 
-.head{
+.head {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,105 +43,77 @@ body{
   margin-bottom: 20px;
 }
 
-h2{
+h2 {
   color: var(--heading-color);
 }
 
-.head button{
+.head button {
   background: transparent;
-  border: 0;
-  outline: 0;
+  border: none;
   font-size: 1rem;
   color: var(--secondary-color);
   text-decoration: underline;
-  transition: all .4s ease-in-out;
+  transition: 0.4s ease-in-out;
   cursor: pointer;
 }
 
-.head button:hover{
+.head button:hover {
   font-weight: 600;
 }
 
-.form-group{
+.form-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 }
 
-.form-group label{
+.form-group label {
   color: var(--secondary-color);
   margin-bottom: 5px;
 }
 
-.input-group{
+.input-group {
   display: flex;
   align-items: center;
   border: 2px solid var(--secondary-color);
-  border-radius: .5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
-.input-group span{
-  background-color: var(--span-background);
+.input-group span {
+  background: var(--span-background);
   padding: 10px;
   color: var(--heading-color);
-  text-transform: lowercase;
   width: 55px;
   text-align: center;
+  text-transform: lowercase;
 }
 
-.input-group span:nth-child(1){
-border-top-left-radius: .5rem;
-  border-bottom-left-radius: .5rem;
-}
+/* Removed duplicated span nth-child styles — handled via 'overflow: hidden' on parent */
 
-.input-group span:nth-child(2){
-border-top-right-radius: .5rem;
-  border-bottom-right-radius: .5rem;
-}
-
-.input-group span:nth-child(3){
-border-top-right-radius: .5rem;
-  border-bottom-right-radius: .5rem;
-}
-
-.input-group input{
+.input-group input {
   width: 100%;
   height: 35px;
-  border: 0;
-  outline: 0;
+  border: none;
   font-size: 1.3rem;
-  padding: 10px 10px;
+  padding: 10px;
+  outline: none;
 }
 
-.input-group input:nth-child(1){
-  border-top-right-radius: .5rem;
-  border-bottom-right-radius: .5rem;
-}
-
-.input-group input:nth-child(2){
-  border-top-left-radius: .6rem;
-  border-bottom-left-radius: .6rem;
-}
-
-.input-group input:nth-child(2){
-  border-top-left-radius: .6rem;
-  border-bottom-left-radius: .6rem;
-}
-
-.block-box{
+.block-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 30px;
 }
 
-.select-group{
+.select-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
 }
 
-.select-group h3{
+.select-group h3 {
   margin-bottom: 10px;
   font-weight: 500;
   color: var(--secondary-color);
@@ -155,70 +130,65 @@ border-top-right-radius: .5rem;
   color: var(--heading-color);
   margin-bottom: 10px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .checkbox-group:hover {
   border-color: var(--lime-color);
 }
 
-.checkbox-group input[type="checkbox"] {
+.checkbox-group input[type='checkbox'] {
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   width: 20px;
   height: 20px;
   border: 2px solid #ccc;
   border-radius: 50%;
-  background:transparent;
+  background: transparent;
+  margin-right: 10px;
   position: relative;
   cursor: pointer;
-  margin-right: 10px;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
 }
 
-/* Hover effect on input */
-.checkbox-group input[type="checkbox"]:hover {
+.checkbox-group input[type='checkbox']:hover {
   border-color: var(--lime-color);
 }
 
-/* Checked (clicked) effect */
-.checkbox-group input[type="checkbox"]:checked{
-  /* background-color: var(--lime-color); */
+.checkbox-group input[type='checkbox']:checked {
   border-color: var(--lime-color);
 }
 
-/* Dot inside when checked */
-.checkbox-group input[type="checkbox"]:checked::after {
+.checkbox-group input[type='checkbox']:checked::after {
   content: '';
   position: absolute;
   top: 4px;
   left: 4px;
   width: 9px;
   height: 9px;
-  background-color:var(--lime-color);
+  background: var(--lime-color);
   border-radius: 50%;
 }
 
-.submit-btn{
+.submit-btn {
   height: 40px;
+  width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
   border-radius: 1rem;
-  border: 0;
-  outline: 0;
-  background-color: var(--lime-color);
+  border: none;
+  background: var(--lime-color);
   color: var(--heading-color);
   font-size: 1.2rem;
   font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-.submit-btn img{
+.submit-btn img {
   margin-right: 10px;
 }
 
-.submit-btn:hover{
-  background-color:  rgba(215, 218, 47,0.4);
+.submit-btn:hover {
+  background-color: rgba(215, 218, 47, 0.4);
 }
